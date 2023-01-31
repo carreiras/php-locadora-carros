@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +51,14 @@ class MarcaController extends Controller
      */
     public function update(Request $request, Marca $marca)
     {
-        //
+        /*
+        print_r($request->all());   // os dados atualizados
+        echo '<hr/>';
+        print_r($marca->getAttributes());   // os dados antigos
+        */
+
+        $marca->update($request->all());
+        return $marca;
     }
 
     /**
@@ -61,6 +69,7 @@ class MarcaController extends Controller
      */
     public function destroy(Marca $marca)
     {
-        //
+        $marca->delete();
+        return ['msg' => 'A marca foi removida com sucesso!'];
     }
 }
